@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var currentCount = 0
+    private val diceSize = 20
 
     private fun countUp() {
         if (currentCount != 6)
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice() {
-        currentCount = (1..6).random()
+        currentCount = (1..diceSize).random()
         setRollText(currentCount)
     }
 

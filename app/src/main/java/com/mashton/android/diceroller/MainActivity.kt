@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice() {
-        //Toast.makeText(this, getString(R.string.button_clicked_toast_text), Toast.LENGTH_SHORT).show()
-
         currentCount = (1..6).random()
         setRollText(currentCount)
     }

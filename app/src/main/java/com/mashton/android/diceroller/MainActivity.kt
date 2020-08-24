@@ -18,19 +18,25 @@ class MainActivity : AppCompatActivity() {
         countUpButton.setOnClickListener {countUp()}
     }
 
-    private fun countUp() {
-        val resultText = findViewById<TextView>(R.id.result_text)
-        when (resultText.toString())
-        {
-            "Hello World!" -> resultText.text = "1"
+    private var currentCount = 0
 
+    private fun countUp() {
+        if (currentCount != 6)
+        {
+            currentCount += 1
+            setRollText(currentCount)
         }
+
     }
 
     private fun rollDice() {
         //Toast.makeText(this, getString(R.string.button_clicked_toast_text), Toast.LENGTH_SHORT).show()
 
-        val randomInt = (1..6).random()
+        currentCount = (1..6).random()
+        setRollText(currentCount)
+    }
+
+    private fun setRollText(randomInt: Int) {
         val resultText = findViewById<TextView>(R.id.result_text)
         resultText.text = randomInt.toString()
     }

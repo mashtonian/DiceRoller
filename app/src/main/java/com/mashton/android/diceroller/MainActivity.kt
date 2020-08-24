@@ -10,43 +10,44 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        diceImage = findViewById<ImageView>(R.id.dice_image)
+        diceOneImage = findViewById<ImageView>(R.id.dice_one_image)
+        diceTwoImage = findViewById<ImageView>(R.id.dice_two_image)
 
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
-
-        val countUpButton = findViewById<Button>(R.id.count_up_button)
-        countUpButton.setOnClickListener {countUp()}
 
         val resetButton = findViewById<Button>(R.id.reset_button)
         resetButton.setOnClickListener {reset()}
     }
 
-    lateinit var diceImage : ImageView
+    lateinit var diceOneImage : ImageView
+    lateinit var diceTwoImage : ImageView
 
-    private var currentCount = 0
-    private val diceSize = 6
+    private var diceOneCurrentCount = 0
+    private var diceTwoCurrentCount = 0
 
     private fun reset() {
-        currentCount = 0
-        setRollImage(currentCount)
+        diceOneCurrentCount = 0
+        diceTwoCurrentCount = 0
+        setDiceImages(diceOneCurrentCount, diceTwoCurrentCount)
     }
     
-    private fun countUp() {
-        if (currentCount != diceSize)
-        {
-            currentCount += 1
-            setRollImage(currentCount)
-        }
-    }
 
     private fun rollDice() {
-        currentCount = (1..diceSize).random()
-        setRollImage(currentCount)
+        diceOneCurrentCount = (1..6).random()
+        diceTwoCurrentCount = (1..6).random()
+        setDiceImages(diceOneCurrentCount, diceTwoCurrentCount)
     }
 
-    private fun setRollImage(rollNumber: Int) {
-        val drawableResource = when (rollNumber)
+    private fun setDiceImages(diceOneNumber: Int, diceTwoNumber: Int) {
+
+        diceOneImage.setImageResource(getDiceDrawableResource(diceOneNumber))
+        diceTwoImage.setImageResource(getDiceDrawableResource(diceTwoNumber))
+    }
+
+    private fun getDiceDrawableResource(number: Int): Int
+    {
+        return when (number)
         {
             0 -> R.drawable.empty_dice
             1 -> R.drawable.dice_1
@@ -56,6 +57,5 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        diceImage.setImageResource(drawableResource)
     }
 }

@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var currentCount = 0
-    private val diceSize = 20
+    private val diceSize = 6
 
     private fun countUp() {
         if (currentCount != diceSize)

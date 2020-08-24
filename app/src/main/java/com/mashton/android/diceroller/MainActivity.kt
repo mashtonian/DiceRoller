@@ -16,13 +16,21 @@ class MainActivity : AppCompatActivity() {
 
         val countUpButton = findViewById<Button>(R.id.count_up_button)
         countUpButton.setOnClickListener {countUp()}
+
+        val resetButton = findViewById<Button>(R.id.reset_button)
+        resetButton.setOnClickListener {reset()}
+    }
+
+    private fun reset() {
+        currentCount = 0
+        setRollText(currentCount)
     }
 
     private var currentCount = 0
     private val diceSize = 20
 
     private fun countUp() {
-        if (currentCount != 6)
+        if (currentCount != diceSize)
         {
             currentCount += 1
             setRollText(currentCount)

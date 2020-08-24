@@ -10,6 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        diceImage = findViewById<ImageView>(R.id.dice_image)
+
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
 
@@ -19,12 +21,14 @@ class MainActivity : AppCompatActivity() {
         val resetButton = findViewById<Button>(R.id.reset_button)
         resetButton.setOnClickListener {reset()}
     }
-    
-    private var currentCount = 1
+
+    lateinit var diceImage : ImageView
+
+    private var currentCount = 0
     private val diceSize = 6
 
     private fun reset() {
-        currentCount = 1
+        currentCount = 0
         setRollImage(currentCount)
     }
     
@@ -42,9 +46,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRollImage(rollNumber: Int) {
-        val diceImage = findViewById<ImageView>(R.id.dice_image)
         val drawableResource = when (rollNumber)
         {
+            0 -> R.drawable.empty_dice
             1 -> R.drawable.dice_1
             2 -> R.drawable.dice_2
             3 -> R.drawable.dice_3

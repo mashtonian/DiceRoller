@@ -16,27 +16,27 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
 
-        val resetButton = findViewById<Button>(R.id.reset_button)
+        val resetButton = findViewById<Button>(R.id.clear_button)
         resetButton.setOnClickListener {reset()}
     }
 
     lateinit var diceOneImage : ImageView
     lateinit var diceTwoImage : ImageView
 
-    private var diceOneCurrentCount = 0
-    private var diceTwoCurrentCount = 0
+    private val diceOne = dice()
+    private val diceTwo = dice()
 
     private fun reset() {
-        diceOneCurrentCount = 0
-        diceTwoCurrentCount = 0
-        setDiceImages(diceOneCurrentCount, diceTwoCurrentCount)
+        diceOne.reset()
+        diceTwo.reset()
+        setDiceImages(diceOne.value, diceTwo.value)
     }
     
 
     private fun rollDice() {
-        diceOneCurrentCount = (1..6).random()
-        diceTwoCurrentCount = (1..6).random()
-        setDiceImages(diceOneCurrentCount, diceTwoCurrentCount)
+        diceOne.roll()
+        diceTwo.roll()
+        setDiceImages(diceOne.value, diceTwo.value)
     }
 
     private fun setDiceImages(diceOneNumber: Int, diceTwoNumber: Int) {

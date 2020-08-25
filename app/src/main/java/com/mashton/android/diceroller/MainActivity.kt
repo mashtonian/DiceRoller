@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { performDiceAction(Dice::roll) }
 
-        val resetButton = findViewById<Button>(R.id.clear_button)
-        resetButton.setOnClickListener { performDiceAction(Dice::reset) }
+        val clearButton = findViewById<Button>(R.id.clear_button)
+        clearButton.setOnClickListener { performDiceAction(Dice::clear) }
     }
 
     private lateinit var diceImageList: List<ImageView>

@@ -7,11 +7,11 @@ class Dice {
         value = (1..6).random()
     }
 
-    fun reset() {
+    fun clear() {
         value = 0
     }
 
-    var imageResource
+    val imageResource
         get() = when (value) {
             0 -> R.drawable.empty_dice
             1 -> R.drawable.dice_1
@@ -21,6 +21,6 @@ class Dice {
             5 -> R.drawable.dice_5
             else -> R.drawable.dice_6
         }
-        set(value) {}
+
 
 }

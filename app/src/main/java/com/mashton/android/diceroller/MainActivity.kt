@@ -10,38 +10,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        diceOneImage = findViewById<ImageView>(R.id.dice_one_image)
-        diceTwoImage = findViewById<ImageView>(R.id.dice_two_image)
-        diceImageList = listOf(diceOneImage, diceTwoImage)
+        diceImageList = listOf(
+            findViewById<ImageView>(R.id.dice_one_image),
+            findViewById<ImageView>(R.id.dice_two_image)
+        )
 
         val rollButton: Button = findViewById(R.id.roll_button)
-        rollButton.setOnClickListener { rollDice() }
+        rollButton.setOnClickListener { performDiceAction(Dice::roll) }
 
         val resetButton = findViewById<Button>(R.id.clear_button)
-        resetButton.setOnClickListener { reset() }
+        resetButton.setOnClickListener { performDiceAction(Dice::reset) }
     }
 
-    lateinit var diceOneImage: ImageView
-    lateinit var diceTwoImage: ImageView
-    lateinit var diceImageList: List<ImageView>
+    private lateinit var diceImageList: List<ImageView>
+    private val diceList = listOf(Dice(), Dice())
 
-    private val diceOne = Dice()
-    private val diceTwo = Dice()
-    private val diceList = listOf(diceOne, diceTwo)
-
-    private fun reset() {
-        diceList.map { it.reset() }
-        setDiceImages()
-    }
-
-    private fun rollDice() {
-        diceList.map { it.roll() }
-        setDiceImages()
-    }
-
-    private fun setDiceImages() {
+    private fun performDiceAction(action: Dice.() -> Unit) {
+        diceList.map { it.action() }
         diceImageList.zip(diceList)
         { image, dice -> image.setImageResource((dice.imageResource)) }
     }
-
 }

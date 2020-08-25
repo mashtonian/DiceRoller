@@ -12,50 +12,36 @@ class MainActivity : AppCompatActivity() {
 
         diceOneImage = findViewById<ImageView>(R.id.dice_one_image)
         diceTwoImage = findViewById<ImageView>(R.id.dice_two_image)
+        diceImageList = listOf(diceOneImage, diceTwoImage)
 
         val rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener { rollDice() }
 
         val resetButton = findViewById<Button>(R.id.clear_button)
-        resetButton.setOnClickListener {reset()}
+        resetButton.setOnClickListener { reset() }
     }
 
-    lateinit var diceOneImage : ImageView
-    lateinit var diceTwoImage : ImageView
+    lateinit var diceOneImage: ImageView
+    lateinit var diceTwoImage: ImageView
+    lateinit var diceImageList: List<ImageView>
 
-    private val diceOne = dice()
-    private val diceTwo = dice()
+    private val diceOne = Dice()
+    private val diceTwo = Dice()
+    private val diceList = listOf(diceOne, diceTwo)
 
     private fun reset() {
-        diceOne.reset()
-        diceTwo.reset()
-        setDiceImages(diceOne.value, diceTwo.value)
+        diceList.map { it.reset() }
+        setDiceImages()
     }
-    
 
     private fun rollDice() {
-        diceOne.roll()
-        diceTwo.roll()
-        setDiceImages(diceOne.value, diceTwo.value)
+        diceList.map { it.roll() }
+        setDiceImages()
     }
 
-    private fun setDiceImages(diceOneNumber: Int, diceTwoNumber: Int) {
-
-        diceOneImage.setImageResource(getDiceDrawableResource(diceOneNumber))
-        diceTwoImage.setImageResource(getDiceDrawableResource(diceTwoNumber))
+    private fun setDiceImages() {
+        diceImageList.zip(diceList)
+        { image, dice -> image.setImageResource((dice.imageResource)) }
     }
 
-    private fun getDiceDrawableResource(number: Int): Int
-    {
-        return when (number)
-        {
-            0 -> R.drawable.empty_dice
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-        }
-    }
 }

@@ -1,9 +1,8 @@
 package com.mashton.android.diceroller
 
-import kotlinx.android.synthetic.main.activity_main.view.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
-
-import org.junit.Assert.*
 
 class DiceTests {
 

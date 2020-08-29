@@ -10,7 +10,7 @@ class DiceTests {
     private val testDice = Dice()
 
     @Test
-    fun rolledDiceProducesNumberBetweenOneAndSix() {
+    fun rollProducesNumberBetweenOneAndSix() {
         testDice.roll()
         assertTrue(testDice.value in (1..6))
     }
@@ -26,28 +26,28 @@ class DiceTests {
     }
 
     @Test
-    fun clearDiceSetsValueToZero() {
+    fun clearSetsValueToZero() {
         testDice.roll()
         testDice.clear()
         assertEquals(0, testDice.value)
     }
 
     @Test
-    fun increaseDiceDoesNothingOnUnrolledDice() {
+    fun increaseDoesNothingOnUnrolledDice() {
         testDice.value = 0
         testDice.increase()
         assertEquals(0, testDice.value)
     }
 
     @Test
-    fun increaseDiceDoesNothingOnDiceWithValueSix() {
+    fun increaseDoesNothingOnDiceWithValueSix() {
         testDice.value = 6
         testDice.increase()
         assertEquals(6, testDice.value)
     }
 
     @Test
-    fun increaseDiceIncreasesByOneForOneToFive() {
+    fun increaseIncreasesByOneForOneToFive() {
         var assertionStatus = true
         for (x in 1..5) {
             testDice.value = x

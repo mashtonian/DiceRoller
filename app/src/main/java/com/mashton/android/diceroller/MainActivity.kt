@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         diceImageList = listOf(
-            findViewById<ImageView>(R.id.dice_one_image),
-            findViewById<ImageView>(R.id.dice_two_image)
+            findViewById(R.id.dice_one_image),
+            findViewById(R.id.dice_two_image)
         )
 
         val rollButton: Button = findViewById(R.id.roll_button)

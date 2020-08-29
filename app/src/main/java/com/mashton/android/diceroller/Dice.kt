@@ -11,6 +11,12 @@ class Dice {
         value = 0
     }
 
+    fun increase() {
+        when (value) {
+            in 1..5 -> value += 1
+        }
+    }
+
     val imageResource
         get() = when (value) {
             0 -> R.drawable.empty_dice
